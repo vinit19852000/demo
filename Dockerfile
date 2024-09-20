@@ -1,20 +1,21 @@
-# Use a Maven image to build the application
-FROM maven:3.9.9-openjdk-17 AS builder
+FROM openjdk:17-slim AS builder
 
-# Set the working directory inside the container
 WORKDIR /app
+
+# Install Maven
+RUN apt-get update && apt-get install -y maven
 
 # Copy the pom.xml and the source code
 COPY pom.xml .
 COPY src ./src
 
 # Run Maven to build the application
-RUN mvn clean package -DskipTests
+RUN mvn clean package 
 
-# Use a lightweight JRE image to run the application
-FROM openjdk:17-jdk-slim
+# ... (rest of your Dockerfile)
+# Create a slimmer image for runtime
+FROM openjdk:17-slim
 
-# Set the working directory
 WORKDIR /app
 
 # Copy the jar file from the builder stage
