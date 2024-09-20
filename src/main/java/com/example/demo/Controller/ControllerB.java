@@ -18,9 +18,9 @@ import com.example.demo.Object.Company;
 
 
 @RestController
-@RequestMapping("/companyA")
+@RequestMapping("/companyB")
 
-public class Controller {
+public class ControllerB {
 	
 	HashMap<String,Company> hmap=new HashMap<String, Company>();
 	
